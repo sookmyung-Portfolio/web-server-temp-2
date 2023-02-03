@@ -6,6 +6,27 @@ MongoClient.connect(process.env.DB_URL, function(err, client) {
     db = client.db('todoapp');  
 })
 
+
+// const MongoClient = require('mongodb').MongoClient;
+// const assert = require('assert');
+
+// // Connection URL
+// const url = process.env.DB_URL;
+
+// // Database Name
+// const dbName = 'todoapp';
+
+// //Use connect method to connect to the server
+// MongoClient.connect(url, function(err, client) {
+//   assert.equal(null, err);
+//   console.log("Connected successfully to server");
+
+//   db = client.db(dbName);
+
+//   client.close();
+// });
+
+
 // 미들웨어 (마이페이지 접속전 실행할 미들웨어)
 function 로그인했니 (req, res, next) {
     if(req.user) {                      // 로그인후 세션이 있으면 req.user가 항상 있는다

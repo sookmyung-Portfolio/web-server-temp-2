@@ -1,6 +1,10 @@
 const express = require('express'); // express 임포트
 const app = express(); // app생성
 const bodyParser = require('body-parser');
+app.use(express.urlencoded({ extended: true }));
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+const { MongoDBNamespace } = require('mongodb');
 const cors = require("cors");
 const port = 5000;
 const { User } = require('./models/User'); 
@@ -9,8 +13,17 @@ const cookieParser = require("cookie-parser");
 require('dotenv').config();
 
 // 수정
+// var db;
+// const MongoClient = require('mongodb').MongoClient;
+// MongoClient.connect(process.env.DB_URL, function(err, client) {
+//     if(err) return console.log(err);
+//     db = client.db('todoapp');
+//     server.listen(process.env.PORT, (req, res) => {
+//         console.log("listening on 7000");
+//     });    
+// })
 
-const { MongoDBNamespace } = require('mongodb');
+// 수정
 const { reset } = require('nodemon');
 const http = require('http');
 const server = http.createServer(app);
@@ -23,8 +36,7 @@ app.use(
   })
 );
 
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json());
+
 app.use(cookieParser());
 
 app.use(express.urlencoded({ extended: true })); // application/x-www-form-urlencode
